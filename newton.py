@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 class Newton:
     iteration = list()
     x_n = list()
@@ -40,28 +41,27 @@ class Newton:
 
         xn = x0
         for n in range(0, max_iter):
-            print('Iteration :', n+1)
-            self.iteration.append(n+1);
+            print('Iteration :', n + 1)
+            self.iteration.append(n + 1);
             fxn = f(xn)
             self.f_x_n.append(fxn)
             self.val_abs.append(abs(fxn))
-            #print('Initial fxn', fxn)
+            # print('Initial fxn', fxn)
             if abs(fxn) < epsilon:
                 newton.x_n.append(xn)
                 return xn
             Dfxn = Df(xn)
             self.derivate.append(Dfxn)
-            #print('value of dfxn', Dfxn)
+            # print('value of dfxn', Dfxn)
             if Dfxn == 0:
                 print('Zero derivative. No solution found.')
                 return None
             old = xn
             xn = xn - fxn / Dfxn
-            self.error.append(abs(xn - old) /100)
+            self.error.append(abs(xn - old) / 100)
             self.x_n.append(xn)
         print('Exceeded maximum iterations. No solution found.')
         return None
-
 
 
 f = lambda x: x ** 3 - 2 * x - 5
@@ -71,8 +71,8 @@ val = newton.newton(f, Df, 1, 1e-8, 10)
 # print(" {0:.10f} ".format(val))
 print(val)
 print("Iteraion", newton.iteration)
-print( "XN", newton.x_n)
-print( "fxn", newton.f_x_n)
-print( "abs val", newton.val_abs)
-print( "f'", newton.derivate)
-print( "Error", newton.error)
+print("XN", newton.x_n)
+print("fxn", newton.f_x_n)
+print("abs val", newton.val_abs)
+print("f'", newton.derivate)
+print("Error", newton.error)
