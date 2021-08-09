@@ -61,9 +61,9 @@ class Interpolation:
                 result - Interpolated value
         '''
         result = 0
-        for i in range(self.x.ndim):
+        for i in range(len(self.x)):
             p = 1
-            for j in range(self.x.ndim):
+            for j in range(len(self.x)):
                 if i != j:
                     p *= (value - self.x[j]) / (self.x[i] - self.x[j])
             result += p * self.y[i]
