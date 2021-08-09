@@ -5,13 +5,14 @@ import InterfazNewton
 
 class Menu:
     def __init__(self, master):
-        root.title("Calculadora")
-        root.geometry("400x400")
-        principal = tk.Frame(root)
-        button = tk.Button(principal, text="Newton", height=5, width=30, command=self.callNewton)
-        button2 = tk.Button(principal, text="Interpolacion", height=5, width=30, command=self.callInterpolation)
-        button.place(relx=0.5, rely=.25, anchor=CENTER)
-        button2.place(relx=0.5, rely=.5, anchor=CENTER)
+        self.master = master
+        master.title("Calculadora")
+        master.geometry("400x400")
+        # Botones
+        self.button = tk.Button(master, text="Newton", height=5, width=30, command=self.callNewton)
+        self.button2 = tk.Button(master, text="Interpolacion", height=5, width=30, command=self.callInterpolation)
+        self.button.place(relx=0.5, rely=.25, anchor=CENTER)
+        self.button2.place(relx=0.5, rely=.5, anchor=CENTER)
 
     def callNewton(self):
         obj = InterfazNewton()
@@ -23,6 +24,5 @@ class Menu:
 
 
 root = tk.Tk()
-root.eval('tk::PlaceWindow . center')
 app = Menu(root)
 root.mainloop()
