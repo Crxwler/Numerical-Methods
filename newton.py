@@ -47,7 +47,7 @@ class Newton:
             self.val_abs.append(abs(fxn))
             #print('Initial fxn', fxn)
             if abs(fxn) < epsilon:
-                newton.x_n.append(xn)
+                self.x_n.append(xn)
                 return xn
             Dfxn = Df(xn)
             self.derivate.append(Dfxn)
@@ -63,7 +63,7 @@ class Newton:
         return None
 
 
-
+'''
 f = lambda x: x ** 3 - 2 * x - 5
 Df = lambda x: 3 * x ** 2 - 2
 newton = Newton()
@@ -76,3 +76,4 @@ print( "fxn", newton.f_x_n)
 print( "abs val", newton.val_abs)
 print( "f'", newton.derivate)
 print( "Error", newton.error)
+'''
