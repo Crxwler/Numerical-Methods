@@ -1,7 +1,8 @@
-import newton
-
 
 class Newton:
+
+    def __init__(self) -> None:
+        super().__init__()
 
     def newton(f, Df, x0, epsilon, max_iter):
         '''Approximate solution of f(x)=0 by Newton's method.
@@ -57,8 +58,9 @@ class Newton:
         return None
 
 
+
 f = lambda x: x ** 3 - 2 * x - 5
 Df = lambda x: 3 * x ** 2 - 2
-val = newton.Newton(f, Df, 1, 1e-8, 10)
+val = Newton.newton(f, Df, 1, 1e-8, 10)
 # print(" {0:.10f} ".format(val))
 print(val)
