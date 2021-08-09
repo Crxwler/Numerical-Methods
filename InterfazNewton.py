@@ -2,38 +2,34 @@ import tkinter as tk
 from tkinter import ttk, CENTER
 
 
-class Interfaz:
+class InterfazNewton:
 
     def __init__(self, master):
         self.master = master
-        master.title("Calculadora")
+        master.title("Newton")
         master.geometry("1100x400")
         # Crear caja de texto.
-        self.entry = ttk.Entry(root)
-        # Posicionarla en la ventana.
+        # Expresion.
         self.label = tk.Label(master, text="introduzca la expresion")
         self.label.place(x=50, y=20)
+        self.entry = ttk.Entry(root)
+        self.entry.place(x=50, y=50)
+        #Datos de X0
         self.label2 = tk.Label(root, text="El valor de x(0)")
         self.label2.place(x=200, y=20)
+        self.entry2 = ttk.Entry(master)
+        self.entry2.place(x=200, y=50)
+        #Datos de la cantidad de resultados
         self.label3 = tk.Label(master, text="cantidad de veces")
         self.label3.place(x=350, y=20)
+        self.entry3 = ttk.Entry(master)
+        self.entry3.place(x=350, y=50)
+        #Datos del numero maximo
         self.label4 = tk.Label(master, text="hasta que numero")
         self.label4.place(x=500, y=20)
-        self.entry.place(x=50, y=50)
-        self.entry2 = ttk.Entry(master)
-        # Posicionarla en la ventana.
-        self.entry2.place(x=200, y=50)
         self.entry4 = ttk.Entry(master)
-        # Posicionarla en la ventana.
         self.entry4.place(x=500, y=50)
-        self.entry3 = ttk.Entry(master)
         # Posicionarla en la ventana.
-        self.entry3.place(x=350, y=50)
-        selected = tk.StringVar()
-        self.settingSortRadio1 = tk.Radiobutton(master, text="Newton", value='1', variable=selected)
-        self.settingSortRadio2 = tk.Radiobutton(master, text="Interpolacion", value='2', variable=selected)
-        self.settingSortRadio1.place(x=50, y=100)
-        self.settingSortRadio2.place(x=50, y=150)
         self.button = tk.Button(master, text="Calcular", command=self.calcular())
         self.button.place(x=350, y=150)
         # Create an object of Style widget
@@ -58,8 +54,11 @@ class Interfaz:
     def calcular(self):
         pass
 
+    def regresar(self):
+        pass
+
 
 root = tk.Tk()
-app = Interfaz(root)
+app = InterfazNewton(root)
 root.mainloop()
 
