@@ -31,11 +31,6 @@ class InterfazNewton:
         self.entry4.place(x=500, y=50)
         # Posicionarla en la ventana.
         self.entry3.place(x=350, y=50)
-        self.selected = tk.StringVar()
-        self.settingSortRadio1 = tk.Radiobutton(master, text="Newton", value='1', variable=self.selected)
-        self.settingSortRadio2 = tk.Radiobutton(master, text="Interpolacion", value='2', variable=self.selected)
-        self.settingSortRadio1.place(x=50, y=100)
-        self.settingSortRadio2.place(x=50, y=150)
         self.button = tk.Button(master, text="Calcular", command=self.calcular)
         self.button.place(x=350, y=150)
         # Create an object of Style widget
