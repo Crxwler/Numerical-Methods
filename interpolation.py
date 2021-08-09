@@ -5,9 +5,9 @@ import scipy.interpolate as interpolate
 
 
 class Interpolation:
-    y = []
-    x = []
-    a = []
+    y = list()
+    x = list()
+    a = list()
     data = None
 
     def __init__(self, x, y):
@@ -52,7 +52,7 @@ class Interpolation:
         plt.title('Lagrange')
         plt.show()
 
-    def compute2(self, points, xp):
+    def compute2(self, xp):
         yp = 0
         for i in range(self.x.ndim):
             p = 1

@@ -72,7 +72,7 @@ class Newton:
                 return None
             old = xn
             xn = xn - fxn / Dfxn
-            self.error.append(abs(xn - old))
+            self.error.append(abs(xn - old) /100)
             self.x_n.append(xn)
         print('Exceeded maximum iterations. No solution found.')
         return None
