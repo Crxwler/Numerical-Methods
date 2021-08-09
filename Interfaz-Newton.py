@@ -62,3 +62,4 @@ class Interfaz:
 root = tk.Tk()
 app = Interfaz(root)
 root.mainloop()
+

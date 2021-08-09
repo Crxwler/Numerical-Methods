@@ -32,6 +32,7 @@ def newton(f, Df, x0, epsilon, max_iter):
     Found solution after 5 iterations.
     1.618033988749989
     '''
+    print(x0)
     xn = x0
     for n in range(0, max_iter):
         print('Iteration :', n)
