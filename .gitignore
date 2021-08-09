@@ -10,3 +10,5 @@ out/
 *.svg
 *.svgz
 *.vscode
+dist/
+build/
