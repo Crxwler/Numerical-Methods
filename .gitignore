@@ -1,0 +1,12 @@
+# Removing Target Directory
+target/
+# Removing Out Directory
+out/
+# Ignored pdf from conversion
+*.pdf
+*.jpg
+*.png
+*.zip
+*.svg
+*.svgz
+*.vscode
