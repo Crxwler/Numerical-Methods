@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, CENTER
 
-import newton
+from Newton import Newton
 
 
 class InterfazNewton:
@@ -67,7 +67,8 @@ class InterfazNewton:
         data2 = self.text2.get()
         data3 = self.text3.get()
         data4 = self.text4.get()
-        obj = newton.Newton(data, lambda x: 3 * x ** 2 - 2, data2, data3, data4)
+        obj=Newton()
+        obj.newton(lambda x: x ** 3 - 2 * x - 5, lambda x: 3 * x ** 2 - 2, 1, 1e-8, 10)
 
         # print(data, data2, data3)
         # print(self.text.get(), self.text2.get(), self.text3.get())

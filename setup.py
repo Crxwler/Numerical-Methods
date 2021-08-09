@@ -9,8 +9,8 @@ setup(
     author_email="jcmonrealr@gmail.com",
     url="https://github.com/Crxwler/Numerical-Methods",
     license="GNU General Public License v2.0",
-    scripts=["newton.py"],
-    console=["newton.py"],
+    scripts=["Newton.py"],
+    console=["Newton.py"],
     options={"py2exe": {"bundle_files": 1}},
     zipfile=None,
 )
