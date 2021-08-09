@@ -19,15 +19,15 @@ class Interpolation:
         '''Interpolation
 
         Params:
-            p - Interpolation Point
+            p - Interpolation va
         Returns:
             result - Interpolated value
         '''
 
         values = []
-        for i in range(self.a.__sizeof__()):
+        for i in range(len(self.a)):
             mult = 1
-            for j in range(self.a.__sizeof__()):
+            for j in range(len(self.a)):
                 if i == j:
                     continue
                 mult = (p - self.x[j]) * mult
@@ -52,12 +52,19 @@ class Interpolation:
         plt.title('Lagrange')
         plt.show()
 
-    def compute2(self, xp):
-        yp = 0
+    def compute2(self, value):
+        '''Interpolation
+
+            Params:
+                value - value to be interpolated
+            Returns:
+                result - Interpolated value
+        '''
+        result = 0
         for i in range(self.x.ndim):
             p = 1
             for j in range(self.x.ndim):
                 if i != j:
-                    p *= (xp - self.x[j]) / (self.x[i] - self.x[j])
-            yp += p * self.y[i]
-        return yp  # interpolated value
+                    p *= (value - self.x[j]) / (self.x[i] - self.x[j])
+            result += p * self.y[i]
+        return result  # interpolated value

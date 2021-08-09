@@ -8,14 +8,8 @@ class Newton:
     val_abs = list()
     error = list()
 
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
-        self.iteration = list()
-        self.x_n = list()
-        self.f_x_n = list()
-        self.derivate = list()
-        self.val_abs = list()
-        self.error = list()
 
     def newton(self, f, Df, x0, epsilon, max_iter):
         '''Approximate solution of f(x)=0 by Newton's method.
@@ -42,14 +36,6 @@ class Newton:
             Continue until abs(f(xn)) < epsilon and return xn.
             If Df(xn) == 0, return None. If the number of iterations
             exceeds max_iter, then return None.
-
-        Examples
-        --------
-        >>> f = lambda x: x**2 - x - 1
-        >>> Df = lambda x: 2*x - 1
-        >>> newton(f,Df,1,1e-8,10)
-        Found solution after 5 iterations.
-        1.618033988749989
         '''
 
         xn = x0
@@ -61,8 +47,7 @@ class Newton:
             self.val_abs.append(abs(fxn))
             #print('Initial fxn', fxn)
             if abs(fxn) < epsilon:
-                print('Found solution after', n, 'iterations.')
-                print('Value of xn :',xn);
+                newton.x_n.append(xn)
                 return xn
             Dfxn = Df(xn)
             self.derivate.append(Dfxn)
