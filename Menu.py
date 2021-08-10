@@ -111,8 +111,8 @@ class PageOne(tk.Frame):
         self.tree.heading("# 2", text="y")
         self.tree.place(x=50, y=200)
         #Resultado
-        self.label4 = tk.Label(self, text=self.message)
-        self.label4.place(x=50, y=350)
+        self.label4 = tk.Label(self,text="Resultado:" ,textvariable=self.message)
+        self.label4.place(x=180, y=180)
         # self.place(width=1100, height=400)
 
     def calcular(self):
@@ -120,8 +120,11 @@ class PageOne(tk.Frame):
         data3 = self.text3.get()
         obj = Interpolation.Interpolation(self.x, self.y)
         #obj.plotInitialData()
-        print(obj.compute2(data3))
+        result = obj.compute2(data3)
+        #print(obj.compute(data3))
+        obj.compute3(data3)
         #obj.plotData()
+        self.message.set( self.message.get() + " "+ str(result))
         return None
 
     def agregar(self):
@@ -156,7 +159,7 @@ class PageTwo(tk.Frame):
         # Expresion.
         self.label = tk.Label(self, text="Introduzca la expresion")
         self.label.place(x=50, y=120)
-        self.entry = tk.Entry(self, textvariable=self.text)
+        self.entry = tk.Entry(self, text="x ** 3 - 2 * x - 5" , textvariable=self.text)
         self.entry.place(x=50, y=150)
         # Datos de X0
         self.label2 = tk.Label(self, text="x(0)")
@@ -172,7 +175,7 @@ class PageTwo(tk.Frame):
         self.label4 = tk.Label(self, text="hasta que numero")
         self.label4.place(x=300, y=120)
         self.entry4 = tk.Entry(self, textvariable=self.text4)
-        self.entry4.place(x=30, y=150, width=40, height=20)
+        self.entry4.place(x=300, y=150, width=40, height=20)
         #Botones
         #self.button = tk.Button(self, text="Regresar",
         #                        command=lambda: controller.show_frame("Menu"))
@@ -185,13 +188,13 @@ class PageTwo(tk.Frame):
         # Add a Treeview widget
         self.tree = Treeview(self, column=("xn", "yn", "valor real", "valor absoluto", "Error relativo"),
                                  show='headings', height=5)
-        self.tree.column("# 1", anchor=tk.CENTER, width=60)
+        self.tree.column("# 1", anchor=tk.CENTER, width=80)
         self.tree.heading("# 1", text="xn")
-        self.tree.column("# 2", anchor=tk.CENTER, width=60)
+        self.tree.column("# 2", anchor=tk.CENTER, width=80)
         self.tree.heading("# 2", text="yn")
-        self.tree.column("# 3", anchor=tk.CENTER, width=60)
+        self.tree.column("# 3", anchor=tk.CENTER, width=80)
         self.tree.heading("# 3", text="valor real")
-        self.tree.column("# 4", anchor=tk.CENTER, width=70)
+        self.tree.column("# 4", anchor=tk.CENTER, width=80)
         self.tree.heading("# 4", text="valor absoluto")
         self.tree.column("# 5", anchor=tk.CENTER, width=80)
         self.tree.heading("# 5", text="Error relativo")
@@ -203,12 +206,14 @@ class PageTwo(tk.Frame):
         data2 = self.text2.get()
         data3 = self.text3.get()
         data4 = self.text4.get()
-        symbols = {'x', sy.Symbol('x', real=True)}
-        print(data)
-        fun = data
-        diff = sy.diff(data, symbols['x']) #->differential
+        #symbols = {'x', sy.Symbol('x', real=True)}
+        #print(data)
+        #fun = data
+        #diff = sy.diff(data, symbols['x']) #->differential
         obj=Newton()
-        obj.newton(data, diff, 1, 1e-8, 10)
+        obj.newton(lambda x: x ** 3 - 2 * x - 5, lambda x: 3 * x ** 2 - 2, 1, 1e-8, 10)
+        for i in obj.iteration:
+            self.tree.insert(parent='', index=i, iid=i, text='', values=(obj.x_n[i], obj.f_x_n[i], obj.derivate[i] ,obj.val_abs[i], obj.error[i]))
         # print(data, data2, data3)
         # print(self.text.get(), self.text2.get(), self.text3.get())
         return None
