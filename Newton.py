@@ -40,7 +40,7 @@ class Newton:
 
         xn = x0
         for n in range(0, max_iter):
-            print('Iteration :', n+1)
+            #print('Iteration :', n+1)
             self.iteration.append(n+1)
             fxn = f(xn)
             self.f_x_n.append(fxn)

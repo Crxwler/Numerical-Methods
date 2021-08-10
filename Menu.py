@@ -3,7 +3,8 @@ from tkinter import ttk, CENTER
 
 import InterfazNewton
 
-class Menu:
+class Menu(tk.Frame):
+
     def __init__(self, master):
         self.master = master
         master.title("Calculadora")
@@ -15,8 +16,9 @@ class Menu:
         self.button2.place(relx=0.5, rely=.5, anchor=CENTER)
 
     def callNewton(self):
-        obj = InterfazNewton()
-        pass
+        self.newtonView = tk.Toplevel(self.master)
+        self.app = InterfazNewton(self.newtonView)
+
 
     def callInterpolation(self):
 

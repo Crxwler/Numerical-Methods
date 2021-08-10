@@ -4,14 +4,16 @@ from tkinter import ttk, CENTER
 import interpolation
 
 
-class InterfazInterpolacion:
+class InterfazInterpolacion(tk.frame):
     #coordenadas
     x = list()
     y = list()
     #indice
     z = 0
 
-    def __init__(self, master):
+    def __init__(self, master, parent):
+        tk.Frame.__init__(self, parent)
+        self.master = master
         self.message = tk.StringVar(value="Resultado    :")
         self.text = tk.StringVar()
         self.text2 = tk.StringVar()
@@ -25,7 +27,7 @@ class InterfazInterpolacion:
         self.entry = ttk.Entry(master, textvariable=self.text)
         self.entry.place(x=50, y=50)
         # Datos de y
-        self.label2 = tk.Label(root, text="El punto en y")
+        self.label2 = tk.Label(master, text="El punto en y")
         self.label2.place(x=200, y=20)
         self.entry2 = ttk.Entry(master, textvariable=self.text2)
         self.entry2.place(x=200, y=50)
@@ -35,9 +37,9 @@ class InterfazInterpolacion:
         self.entry3 = ttk.Entry(master, textvariable=self.text3)
         self.entry3.place(x=350, y=50)
         # Botones
-        self.button = tk.Button(root, text="Agregar", command=self.agregar)
+        self.button = tk.Button(master, text="Agregar", command=self.agregar)
         self.button.place(x=50, y=80)
-        self.button2 = tk.Button(root, text="Calcular", command=self.calcular)
+        self.button2 = tk.Button(master, text="Calcular", command=self.calcular)
         self.button2.place(x=200, y=80)
         self.button2 = tk.Button(master, text="Regresar", command=self.regresar)
         self.button2.place(x=350, y=80)
@@ -81,7 +83,7 @@ class InterfazInterpolacion:
         return None
 
 
-root = tk.Tk()
-root.eval('tk::PlaceWindow . center')
-app = InterfazInterpolacion(root)
-root.mainloop()
+#root = tk.Tk()
+#root.eval('tk::PlaceWindow . center')
+#app = InterfazInterpolacion(root)
+#root.mainloop()
