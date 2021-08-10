@@ -12,8 +12,8 @@ class Interpolation:
 
     def __init__(self, x, y):
         super().__init__()
-        self.x = x
-        self.y = y
+        self.x = [float(i) for i in x]
+        self.y = [float(i) for i in y]
 
     def compute(self, p):
         '''Interpolation
@@ -60,6 +60,7 @@ class Interpolation:
             Returns:
                 result - Interpolated value
         '''
+        value = float(value)
         result = 0
         for i in range(len(self.x)):
             p = 1

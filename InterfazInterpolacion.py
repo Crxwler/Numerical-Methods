@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, CENTER
 
-import interpolation
+import Interpolation
 
 
 class InterfazInterpolacion(tk.frame):
@@ -62,7 +62,7 @@ class InterfazInterpolacion(tk.frame):
     def calcular(self):
         # print("Calculate")
         data3 = self.text3.get()
-        obj = interpolation.Interpolation(self.x, self.y)
+        obj = Interpolation.Interpolation(self.x, self.y)
         obj.compute2(data3)
         return None
 

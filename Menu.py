@@ -1,7 +1,7 @@
 from tkinter.ttk import Treeview
 import sympy as sy
 
-import interpolation
+import Interpolation
 from Newton import Newton
 
 try:
@@ -81,14 +81,14 @@ class PageOne(tk.Frame):
         self.text3 = tk.StringVar()
         # Datos de x
         self.label = tk.Label(self, text="X")
-        self.label.place(x=50, y=70)
+        self.label.place(x=40, y=70)
         self.entry = tk.Entry(self, textvariable=self.text)
-        self.entry.place(x=50, y=100, width=20, height=20)
+        self.entry.place(x=40, y=100, width=30, height=20)
         # Datos de y
         self.label2 = tk.Label(self, text="Y")
         self.label2.place(x=80, y=70)
         self.entry2 = tk.Entry(self, textvariable=self.text2)
-        self.entry2.place(x=80, y=100, width=20, height=20)
+        self.entry2.place(x=80, y=100, width=30, height=20)
         # Datos del valor a evaluar
         self.label3 = tk.Label(self, text="Input")
         self.label3.place(x=130, y=70)
@@ -118,7 +118,7 @@ class PageOne(tk.Frame):
     def calcular(self):
         # print("Calculate")
         data3 = self.text3.get()
-        obj = interpolation.Interpolation(self.x, self.y)
+        obj = Interpolation.Interpolation(self.x, self.y)
         #obj.plotInitialData()
         print(obj.compute2(data3))
         #obj.plotData()
