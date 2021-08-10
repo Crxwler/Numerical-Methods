@@ -213,7 +213,7 @@ class PageTwo(tk.Frame):
         obj=Newton()
         obj.newton(lambda x: x ** 3 - 2 * x - 5, lambda x: 3 * x ** 2 - 2, 1, 1e-8, 10)
         for i in obj.iteration:
-            self.tree.insert(parent='', index=i, iid=i, text='', values=(obj.x_n[i], obj.f_x_n[i], obj.derivate[i] ,obj.val_abs[i], obj.error[i]))
+            self.tree.insert(parent='', index=i, iid=i, text='', values=(obj.x_n[i], obj.f_x_n[i], obj.derivate[i], obj.val_abs[i], obj.error[i]))
         # print(data, data2, data3)
         # print(self.text.get(), self.text2.get(), self.text3.get())
         return None
