@@ -11,19 +11,19 @@ class Newton:
     def __init__(self):
         super().__init__()
 
-    def newton(self, f, Df, x0, epsilon, max_iter):
+    def newton(self, fun, derivative, x0, criteria, max_iter):
         '''Approximate solution of f(x)=0 by Newton's method.
 
         Parameters
         ----------
-        f : function
+        fun : function
             Function for which we are searching for a solution f(x)=0.
-        Df : function
+        derivative : function
             Derivative of f(x).
         x0 : number
             Initial guess for a solution f(x)=0.
-        epsilon : number
-            Stopping criteria is abs(f(x)) < epsilon.
+        criteria : number
+            Stopping criteria is abs(f(x)) < criteria.
         max_iter : integer
             Maximum number of iterations of Newton's method.
 
@@ -32,45 +32,28 @@ class Newton:
         xn : number
             Implement Newton's method: compute the linear approximation
             of f(x) at xn and find x intercept by the formula
-                x = xn - f(xn)/Df(xn)
-            Continue until abs(f(xn)) < epsilon and return xn.
-            If Df(xn) == 0, return None. If the number of iterations
+                x = xn - f(xn)/derivative(xn)
+            Continue until abs(f(xn)) < criteria and return xn.
+            If derivative(xn) == 0, return None. If the number of iterations
             exceeds max_iter, then return None.
         '''
 
         xn = x0
         for n in range(0, max_iter):
             self.iteration.append(n)
-            fxn = f(xn)
+            fxn = fun(xn)
             self.f_x_n.append(fxn)
             self.val_abs.append(abs(fxn))
-            if abs(fxn) < epsilon:
+            if abs(fxn) < criteria:
                 self.x_n.append(xn)
                 return xn
-            Dfxn = Df(xn)
-            self.derivate.append(Dfxn)
-            if Dfxn == 0:
-                print('Zero derivative. No solution found.')
+            derivativexn = derivative(xn)
+            self.derivative.append(derivativexn)
+            if derivativexn == 0:
                 return None
             old = xn
-            xn = xn - fxn / Dfxn
+            xn = xn - fxn / derivativexn
             self.error.append( abs((xn - old)/xn))
             self.x_n.append(xn)
-        print('Exceeded maximum iterations. No solution found.')
         return None
 
-
-'''
-f = lambda x: x ** 3 - 2 * x - 5
-Df = lambda x: 3 * x ** 2 - 2
-newton = Newton()
-val = newton.newton(f, Df, 1, 1e-8, 10)
-# print(" {0:.10f} ".format(val))
-print(val)
-print("Iteraion", newton.iteration)
-print( "XN", newton.x_n)
-print( "fxn", newton.f_x_n)
-print( "abs val", newton.val_abs)
-print( "f'", newton.derivate)
-print( "Error", newton.error)
-'''

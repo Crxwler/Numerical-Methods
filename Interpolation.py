@@ -20,7 +20,7 @@ class Interpolation:
         '''Interpolation
 
         Params:
-            p - Interpolation va
+            p - Interpolation value
         Returns:
             result - Interpolated value
         '''
@@ -33,7 +33,6 @@ class Interpolation:
                     continue
                 mult = (p - self.x[j]) * mult
             values[i] = self.a[i] * mult
-        #result = [ +val for val in values]
         result = sum(values)
         return result
 
@@ -91,12 +90,11 @@ class Interpolation:
             div[i] = de
         simple = val.expand()
         px = sympy.lambdify(x1, simple)
-        m = 101
+        m = 100
         a = np.min(x)
         b = np.min(y)
         pxi = np.linspace(a, b, m)
         pfi = px(pxi)
-        #print(simple)
         plt.plot(x, y, 'o', label = 'Points')
         plt.plot(pxi, pfi, label = 'Polynomials')
         plt.legend()

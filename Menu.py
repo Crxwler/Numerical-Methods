@@ -5,11 +5,12 @@ import Interpolation
 from Newton import Newton
 
 try:
-    import tkinter as tk                # python 3
+    import tkinter as tk  # python 3
     from tkinter import font as tkfont  # python 3
 except ImportError:
-    import Tkinter as tk     # python 2
+    import Tkinter as tk  # python 2
     import tkFont as tkfont  # python 2
+
 
 class SampleApp(tk.Tk):
 
@@ -61,10 +62,10 @@ class Menu(tk.Frame):
 
 
 class PageOne(tk.Frame):
-    #coordenadas
+    # coordenadas
     x = list()
     y = list()
-    #indice
+    # indice
     z = 0
 
     def __init__(self, parent, controller):
@@ -93,25 +94,21 @@ class PageOne(tk.Frame):
         self.label3 = tk.Label(self, text="Input")
         self.label3.place(x=130, y=70)
         self.entry3 = tk.Entry(self, textvariable=self.text3)
-        self.entry3.place(x=130, y=100,  width=30, height=20)
+        self.entry3.place(x=130, y=100, width=30, height=20)
         # Botones
         self.button = tk.Button(self, text="Agregar", command=self.agregar)
         self.button.place(x=50, y=130)
         self.button2 = tk.Button(self, text="Calcular", command=self.calcular)
         self.button2.place(x=130, y=130)
-        #self.button2 = tk.Button(self, text="Regresar",
-        #                        command=lambda: controller.show_frame("Menu"))
-        #self.button2.place(x=350, y=80)
-        # Add a Treeview widget
         self.tree = Treeview(self, column=("x", "y"),
-                                 show='headings', height=5)
+                             show='headings', height=5)
         self.tree.column("# 1", anchor=tk.CENTER, width=60)
         self.tree.heading("# 1", text="x")
         self.tree.column("# 2", anchor=tk.CENTER, width=60)
         self.tree.heading("# 2", text="y")
         self.tree.place(x=50, y=200)
-        #Resultado
-        self.label4 = tk.Label(self,text="Resultado:" ,textvariable=self.message)
+        # Resultado
+        self.label4 = tk.Label(self, text="Resultado:", textvariable=self.message)
         self.label4.place(x=180, y=180)
         # self.place(width=1100, height=400)
 
@@ -119,12 +116,9 @@ class PageOne(tk.Frame):
         # print("Calculate")
         data3 = self.text3.get()
         obj = Interpolation.Interpolation(self.x, self.y)
-        #obj.plotInitialData()
         result = obj.compute2(data3)
-        #print(obj.compute(data3))
         obj.compute3(data3)
-        #obj.plotData()
-        self.message.set( self.message.get() + " "+ str(result))
+        self.message.set(self.message.get() + " " + str(result))
         return None
 
     def agregar(self):
@@ -141,12 +135,13 @@ class PageOne(tk.Frame):
         # print(self.text.get(), self.text2.get(), self.text3.get())
         return None
 
+
 class PageTwo(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Newthon Raphson", font=controller.title_font)
+        label = tk.Label(self, text="Newton Raphson", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         button = tk.Button(self, text="Back to Menu",
                            command=lambda: controller.show_frame("Menu"))
@@ -159,7 +154,7 @@ class PageTwo(tk.Frame):
         # Expresion.
         self.label = tk.Label(self, text="Introduzca la expresion")
         self.label.place(x=50, y=120)
-        self.entry = tk.Entry(self, text="x ** 3 - 2 * x - 5" , textvariable=self.text)
+        self.entry = tk.Entry(self, text="x ** 3 - 2 * x - 5", textvariable=self.text)
         self.entry.place(x=50, y=150)
         # Datos de X0
         self.label2 = tk.Label(self, text="x(0)")
@@ -176,18 +171,11 @@ class PageTwo(tk.Frame):
         self.label4.place(x=300, y=120)
         self.entry4 = tk.Entry(self, textvariable=self.text4)
         self.entry4.place(x=300, y=150, width=40, height=20)
-        #Botones
-        #self.button = tk.Button(self, text="Regresar",
-        #                        command=lambda: controller.show_frame("Menu"))
-        #self.button.place(x=50, y=80)
         self.button = tk.Button(self, text="Calcular", command=self.calcular)
         self.button.place(x=370, y=150)
-        # Create an object of Style widget
-        #self.style = tk.Style()
-        #self.style.theme_use('clam')
         # Add a Treeview widget
         self.tree = Treeview(self, column=("xn", "yn", "valor real", "valor absoluto", "Error relativo"),
-                                 show='headings', height=5)
+                             show='headings', height=5)
         self.tree.column("# 1", anchor=tk.CENTER, width=80)
         self.tree.heading("# 1", text="xn")
         self.tree.column("# 2", anchor=tk.CENTER, width=80)
@@ -206,14 +194,15 @@ class PageTwo(tk.Frame):
         data2 = self.text2.get()
         data3 = self.text3.get()
         data4 = self.text4.get()
-        #symbols = {'x', sy.Symbol('x', real=True)}
-        #print(data)
-        #fun = data
-        #diff = sy.diff(data, symbols['x']) #->differential
-        obj=Newton()
-        obj.newton(lambda x: x ** 3 - 2 * x - 5, lambda x: 3 * x ** 2 - 2, 1, 1e-8, 10)
+        # symbols = {'x', sy.Symbol('x', real=True)}
+        # print(data)
+        # fun = data
+        # diff = sy.diff(data, symbols['x']) #->differential
+        obj = Newton()
+        # obj.newton(lambda x: x ** 3 - 2 * x - 5, lambda x: 3 * x ** 2 - 2, 1, 1e-8, 10)
         for i in obj.iteration:
-            self.tree.insert(parent='', index=i, iid=i, text='', values=(obj.x_n[i], obj.f_x_n[i], obj.derivate[i], obj.val_abs[i], obj.error[i]))
+            self.tree.insert(parent='', index=i, iid=i, text='',
+                             values=(obj.x_n[i], obj.f_x_n[i], obj.derivate[i], obj.val_abs[i], obj.error[i]))
         # print(data, data2, data3)
         # print(self.text.get(), self.text2.get(), self.text3.get())
         return None
