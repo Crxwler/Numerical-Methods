@@ -40,24 +40,22 @@ class Newton:
 
         xn = x0
         for n in range(0, max_iter):
-            #print('Iteration :', n+1)
-            self.iteration.append(n+1)
+            self.iteration.append(n)
             fxn = f(xn)
             self.f_x_n.append(fxn)
             self.val_abs.append(abs(fxn))
-            #print('Initial fxn', fxn)
             if abs(fxn) < epsilon:
                 self.x_n.append(xn)
                 return xn
             Dfxn = Df(xn)
             self.derivate.append(Dfxn)
-            #print('value of dfxn', Dfxn)
             if Dfxn == 0:
                 print('Zero derivative. No solution found.')
                 return None
             old = xn
             xn = xn - fxn / Dfxn
-            self.error.append(abs(xn - old) /100)
+            self.error.append(abs(xn - old)/100)
+            print(abs(xn - old)*100)
             self.x_n.append(xn)
         print('Exceeded maximum iterations. No solution found.')
         return None
