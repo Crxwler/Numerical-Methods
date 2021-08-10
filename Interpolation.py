@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import scipy.interpolate as interpolate
+import sympy
 
 
 class Interpolation:
@@ -32,7 +33,8 @@ class Interpolation:
                     continue
                 mult = (p - self.x[j]) * mult
             values[i] = self.a[i] * mult
-        result = [val for val in values]
+        #result = [ +val for val in values]
+        result = sum(values)
         return result
 
     def plotInitialData(self):
@@ -69,3 +71,36 @@ class Interpolation:
                     p *= (value - self.x[j]) / (self.x[i] - self.x[j])
             result += p * self.y[i]
         return result  # interpolated value
+
+    def compute3(self, value):
+        x = np.array(self.x)
+        y = np.array(self.y)
+        n = len(x)
+        x1 = sympy.Symbol('x')
+        val = 0
+        div = np.zeros(n, dtype = float)
+        for i in range(0, n, 1):
+            result = 1
+            de = 1
+            for j in range(0, n, 1):
+                if i != j :
+                    result *= (x1-x[j])
+                    de *= (x[i]-x[j])
+            term= result/de
+            val += term*y[i]
+            div[i] = de
+        simple = val.expand()
+        px = sympy.lambdify(x1, simple)
+        m = 101
+        a = np.min(x)
+        b = np.min(y)
+        pxi = np.linspace(a, b, m)
+        pfi = px(pxi)
+        #print(simple)
+        plt.plot(x, y, 'o', label = 'Points')
+        plt.plot(pxi, pfi, label = 'Polynomials')
+        plt.legend()
+        plt.xlabel("xi")
+        plt.ylabel("fi")
+        plt.title("Interpolation of lagrange")
+        plt.show()

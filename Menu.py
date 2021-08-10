@@ -111,8 +111,8 @@ class PageOne(tk.Frame):
         self.tree.heading("# 2", text="y")
         self.tree.place(x=50, y=200)
         #Resultado
-        self.label4 = tk.Label(self, text=self.message)
-        self.label4.place(x=50, y=350)
+        self.label4 = tk.Label(self,text="Resultado:" ,textvariable=self.message)
+        self.label4.place(x=180, y=180)
         # self.place(width=1100, height=400)
 
     def calcular(self):
@@ -120,8 +120,11 @@ class PageOne(tk.Frame):
         data3 = self.text3.get()
         obj = Interpolation.Interpolation(self.x, self.y)
         #obj.plotInitialData()
-        print(obj.compute2(data3))
+        result = obj.compute2(data3)
+        #print(obj.compute(data3))
+        obj.compute3(data3)
         #obj.plotData()
+        self.message.set( self.message.get() + " "+ str(result))
         return None
 
     def agregar(self):
